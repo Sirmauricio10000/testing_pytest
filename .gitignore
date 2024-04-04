@@ -1,0 +1,7 @@
+venv
+__pycache__
+__init__.py
+assets
+.vscode
+.pytest_cache
+report.html
