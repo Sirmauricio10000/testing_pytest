@@ -124,3 +124,31 @@ La prueba verifica que una solicitud **HTTP POST** a una API para crear una nuev
 - **assert response.status_code == 200**: Verifica que el código de estado de la respuesta HTTP sea 200, indicando una operación exitosa.
 - **assert response.json()["nombre"] == nombreCategoria**: Comprueba que el nombre de la categoría retornado por la API en el cuerpo de la respuesta coincide con el que se envió en la solicitud.
 - **assert isinstance(response.json()["id"], str)**: Asegura que el id retornado en la respuesta es una cadena de caracteres (str). Esto verifica indirectamente que se creó una nueva categoría y que la API devolvió un identificador para ella.
+
+
+
+### codigo postman
+
+Para testear los status code:
+```
+pm.test("Test status Code", function () {
+    pm.expect(pm.response.code).to.eql(200); 
+});
+```
+
+Para crear strings aleatorios, y posteriormente guardar ese string en varibales de entorno:
+```
+function generateRandomString(length) {
+    let result = '';
+    let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+    let charactersLength = characters.length;
+    for ( let i = 0; i < length; i++ ) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
+
+let randomString = generateRandomString(10); 
+pm.environment.set("randomString", randomString);
+
+```
